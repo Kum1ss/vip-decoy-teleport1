@@ -18,7 +18,7 @@ for sdk_target in MMSPlugin.sdk_targets:
   ]
 
   binary.sources += [
-    'vip_smoke.cpp',
+    'vip_decoy_teleport.cpp',
     os.path.join('..', 'SchemaEntity', 'schemasystem.cpp'),
   ]
 

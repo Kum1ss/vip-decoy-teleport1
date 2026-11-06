@@ -20,8 +20,7 @@ jobs:
           git -C mms submodule update --init --recursive
           git clone https://github.com/alliedmodders/hl2sdk hl2sdk-cs2
           git -C hl2sdk-cs2 checkout 84a823db
-          git clone https://github.com/Pisex/cs2-menus tmp-menus
-          cp -r tmp-menus/SchemaEntity repo/SchemaEntity || true
+          git clone https://github.com/Pisex/SchemaEntity.git repo/SchemaEntity
 
       - name: Build
         env: { CC: clang-18, CXX: clang++-18 }

@@ -21,6 +21,8 @@ jobs:
           git clone https://github.com/alliedmodders/hl2sdk hl2sdk-cs2
           git -C hl2sdk-cs2 checkout 84a823db
           git clone https://github.com/Pisex/SchemaEntity.git repo/SchemaEntity
+          sed -i 's/FL_PAWN_FAKECLIENT/FL_FAKECLIENT/g' repo/SchemaEntity/CCSPlayerPawn.h
+          sed -i 's/FL_CONTROLLER_FAKECLIENT/FL_FAKECLIENT/g' repo/SchemaEntity/CCSPlayerController.h
 
       - name: Build
         env: { CC: clang-18, CXX: clang++-18 }

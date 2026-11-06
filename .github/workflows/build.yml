@@ -1,0 +1,39 @@
+name: build
+on: workflow_dispatch
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+        with: { path: repo }
+
+      - name: Dependencies
+        run: |
+          wget -qO- https://apt.llvm.org/llvm.sh | sudo bash -s -- 18
+          sudo apt-get install -y python3-pip git
+          pip install git+https://github.com/alliedmodders/ambuild
+
+      - name: Fetch SDKs
+        run: |
+          git clone https://github.com/alliedmodders/metamod-source mms
+          git -C mms checkout 4399ff0
+          git -C mms submodule update --init --recursive
+          git clone https://github.com/alliedmodders/hl2sdk hl2sdk-cs2
+          git -C hl2sdk-cs2 checkout 84a823db
+          git clone https://github.com/Pisex/cs2-menus tmp-menus
+          cp -r tmp-menus/SchemaEntity repo/SchemaEntity || true
+
+      - name: Build
+        env: { CC: clang-18, CXX: clang++-18 }
+        run: |
+          cd repo/source && mkdir build && cd build
+          python3 ../configure.py -s cs2 --targets x86_64 --enable-optimize \
+            --hl2sdk-manifests=./hl2sdk-manifests \
+            --mms_path=$GITHUB_WORKSPACE/mms \
+            --hl2sdk-root=$GITHUB_WORKSPACE
+          ambuild
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: vip_decoy_teleport
+          path: repo/source/build/package

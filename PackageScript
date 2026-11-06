@@ -1,0 +1,2 @@
+# Copy the standard PackageScript from the cs2-vip-modules project.
+# This package script creates the `build/package/addons` layout shown in the original instructions.

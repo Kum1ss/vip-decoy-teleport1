@@ -1,0 +1,2 @@
+# Copy the standard SourceMod/Metamod AMBuildScript from the cs2-vip-modules project.
+# Replace VIP_Smoke naming with vip_decoy_teleport and keep the rest unchanged.

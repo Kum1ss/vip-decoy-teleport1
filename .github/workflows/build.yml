@@ -23,6 +23,7 @@ jobs:
           git clone https://github.com/Pisex/SchemaEntity.git repo/SchemaEntity
           sed -i 's/FL_PAWN_FAKECLIENT/FL_FAKECLIENT/g' repo/SchemaEntity/CCSPlayerPawn.h
           sed -i 's/FL_CONTROLLER_FAKECLIENT/FL_FAKECLIENT/g' repo/SchemaEntity/CCSPlayerController.h
+          sed -i 's/NetworkStateChanged_t/NetworkStateChangedData/g' repo/SchemaEntity/schemasystem.cpp
 
       - name: Build
         env: { CC: clang-18, CXX: clang++-18 }

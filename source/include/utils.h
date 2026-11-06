@@ -10,7 +10,7 @@ class CBaseEntity;
 class Vector;
 class QAngle;
 
-#define Utils_INTERFACE "UtilsApi"
+#define UTILS_INTERFACE "UtilsApi"
 
 class IUtilsApi
 {
